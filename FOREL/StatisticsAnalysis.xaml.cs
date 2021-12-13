@@ -26,12 +26,6 @@ namespace FOREL
     /// </summary>
     public partial class StatisticsAnalysis : Window
     {
-        private enum AnalysisType
-        {
-            RandomData,
-            Cluster
-        }
-
         private Double[] m_data;
         private List<Cluster> m_clusters;
         private AnalysisType m_analysisType;
@@ -41,7 +35,8 @@ namespace FOREL
             InitializeComponent();
 
             m_analysisType = AnalysisType.Cluster;
-            m_clusters = clusters;
+
+            m_clusters = clusters.ToList();
 
             I_U_D_NumCluster.Maximum = clusters.Count;
             I_U_D_NumCluster.Minimum = 1;
@@ -79,7 +74,7 @@ namespace FOREL
             else if(m_analysisType == AnalysisType.Cluster)
             {
                 Int32 numCluster = (Int32)I_U_D_NumCluster.Value - 1;
-                m_data = m_clusters[numCluster].Elems().Select(c => c.Mass).ToArray();
+                m_data = m_clusters[numCluster].Elems.Select(c => c.Value).ToArray();
             }
 
             Int32 digitsCountAfterComa = 3;

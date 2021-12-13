@@ -44,6 +44,8 @@ namespace FOREL
 
         public Double Mass { get; set; }
 
+        public Double Value => Mass * (X + Y);
+
         public SolidColorBrush Color { get; set; }
 
         public Object Clone() =>

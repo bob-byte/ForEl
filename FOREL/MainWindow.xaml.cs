@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FOREL.Extensions;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -82,7 +84,6 @@ namespace FOREL
             {
                 plot.Children.Add(Representation.GetCircle(elem.X, elem.Y,
                     elem.Mass, elem.Color, STROKE_THICKNESS));
-                elem.Mass *= elem.X + elem.Y;
             }
 
             foreach (Cluster cluster in m_clusterList)

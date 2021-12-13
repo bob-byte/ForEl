@@ -98,11 +98,11 @@
         <Label Content="Input cluster number = "
                x:Name="L_NumCluster"
                HorizontalAlignment="Left"
-               Margin="396,22,0,0"
+               Margin="391,22,0,0"
                VerticalAlignment="Top" />
 
         <xctk:NumericUpDown Name="I_U_D_NumCluster"
-                            Margin="532,19,10,79"
+                            Margin="532,19,28,79"
                             RenderTransformOrigin="0.611,0.583" />
     </Grid>
 </Window>

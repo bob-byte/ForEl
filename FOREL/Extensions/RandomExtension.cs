@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FOREL
+namespace FOREL.Extensions
 {
     static class RandomExtension
     {

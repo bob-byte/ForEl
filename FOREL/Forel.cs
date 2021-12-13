@@ -38,7 +38,7 @@ namespace FOREL
             return neighbourElems;
         }
 
-        private Cluster CenterOfElems(List<Element> neighbourElems)
+        private Element CenterOfElems(List<Element> neighbourElems)
         {
             List<Element> copyOfNeighbourElems = neighbourElems.ToList();
 
@@ -57,7 +57,7 @@ namespace FOREL
             Double idealX = sumXByMass / totalMass;
             Double idealY = sumYByMass / totalMass;
 
-            Cluster centerElem = s_mapper.Map<Cluster>(copyOfNeighbourElems[0]);
+            Element centerElem = copyOfNeighbourElems[0].Clone() as Element;
 
             for (Int32 elem = 1; elem < copyOfNeighbourElems.Count; elem++)
             {
@@ -65,18 +65,13 @@ namespace FOREL
                 Double epsOfCenter = Math.Abs(centerElem.X - idealX) + Math.Abs(centerElem.Y - idealY);
                 if (epsOfNeightbour < epsOfCenter)
                 {
-                    centerElem = s_mapper.Map<Cluster>(copyOfNeighbourElems[elem]);
+                    centerElem = copyOfNeighbourElems[elem].Clone() as Element;
                 }
             }
-
-            centerElem.AddElemsOfCluster(copyOfNeighbourElems.ToArray());
 
             return centerElem;
         }
 
-        /// <returns>
-        /// Centers of clusters
-        /// </returns>
         public List<Cluster> Clustering(Double radiusSphere, List<Element> sample)
         {
             List<Element> copySample = sample.ToList();
@@ -89,7 +84,7 @@ namespace FOREL
                 //get random elements
                 Element currentElem = copySample[random.Next(0, copySample.Count)];
                 List<Element> neighbourElems = NeighbourElems(radiusSphere, copySample, currentElem);
-                Cluster centerElem = CenterOfElems(neighbourElems);
+                Element centerElem = CenterOfElems(neighbourElems);
 
                 //until the new current object matches the old one
                 while (!IsNear(currentElem, centerElem, EPS_DOUBLE))
@@ -106,7 +101,11 @@ namespace FOREL
                     Int32 j = sample.IndexOf(sample.Single(c => c.Equals(neighbourElems[i])));
                     sample[j].Color = centerElem.Color;
                 }
-                spheres.Add(centerElem);
+
+                Cluster cluster = s_mapper.Map<Cluster>(centerElem);
+                cluster.AddElemsOfCluster(neighbourElems.ToArray());
+
+                spheres.Add(cluster);
             }
 
             return spheres;
