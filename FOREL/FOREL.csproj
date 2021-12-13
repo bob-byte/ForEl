@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Extreme.Numerics" Version="8.1.1" />
+    <PackageReference Include="InteractiveDataDisplay.Core" Version="1.0.0" />
+    <PackageReference Include="TAlex.WPF.Controls" Version="3.0.2" />
+  </ItemGroup>
+
+</Project>
