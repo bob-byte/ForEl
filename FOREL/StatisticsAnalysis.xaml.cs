@@ -74,7 +74,7 @@ namespace FOREL
             else if(m_analysisType == AnalysisType.Cluster)
             {
                 Int32 numCluster = (Int32)I_U_D_NumCluster.Value - 1;
-                m_data = m_clusters[numCluster].Elems.Select(c => c.Value).ToArray();
+                m_data = m_clusters[numCluster].Elems().Select(c => c.Value).ToArray();
             }
 
             Int32 digitsCountAfterComa = 3;
